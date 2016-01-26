@@ -21,6 +21,18 @@
                 <th>Price</th>
                 <td>{{ product.price }}</td>
             </tr>
+            <tr>
+                <th>Price</th>
+                <td>
+                <ul>
+                  {% for image in product.images %}
+                    <li><img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}"/></li>
+                  {% else %}
+                   <li>Pas d'image trouvé.</li>
+                  {% endfor %}
+                  </ul>
+                </td>
+            </tr>
         </tbody>
     </table>
 

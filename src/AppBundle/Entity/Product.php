@@ -46,6 +46,7 @@ class Product
 
   /**
   * @ORM\OneToMany(targetEntity="Image", mappedBy="products", cascade={"persist"})
+  * @ORM\JoinColumn(nullable=false)
   */
   private $images;
 

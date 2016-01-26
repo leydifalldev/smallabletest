@@ -8,8 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Product;
 use AppBundle\Form\ProductType;
-use AppBundle\Entity\Image;
-use AppBundle\Form\ImageType;
 
 /**
  * Product controller.
