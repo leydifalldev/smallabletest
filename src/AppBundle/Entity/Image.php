@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Product;
 
 /**
  * Image
@@ -35,11 +36,17 @@ class Image
      */
     private $url;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="Product", inversedBy="images", cascade={"persist"})
+    * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+    */
+    private $products;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +69,7 @@ class Image
     /**
      * Get alt
      *
-     * @return string 
+     * @return string
      */
     public function getAlt()
     {
@@ -85,7 +92,7 @@ class Image
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {

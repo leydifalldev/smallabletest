@@ -3,122 +3,150 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Image;
 
 /**
- * Product
- *
- * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
- */
+* Product
+*
+* @ORM\Table(name="product")
+* @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
+*/
 class Product
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+  /**
+  * @var int
+  *
+  * @ORM\Column(name="id", type="integer")
+  * @ORM\Id
+  * @ORM\GeneratedValue(strategy="AUTO")
+  */
+  private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
+  /**
+  * @var string
+  *
+  * @ORM\Column(name="name", type="string", length=255)
+  */
+  private $name;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
+  /**
+  * @var string
+  *
+  * @ORM\Column(name="description", type="text")
+  */
+  private $description;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="price", type="string", length=255)
-     */
-    private $price;
+  /**
+  * @var string
+  *
+  * @ORM\Column(name="price", type="string", length=255)
+  */
+  private $price;
 
+  /**
+  * @ORM\OneToMany(targetEntity="Image", mappedBy="products", cascade={"persist"})
+  */
+  private $images;
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+  public function __construct()
+  {
+    $this->images = new ArrayCollection();
+  }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Product
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+  /**
+  * Get id
+  *
+  * @return integer
+  */
+  public function getId()
+  {
+    return $this->id;
+  }
 
-        return $this;
-    }
+  /**
+  * Set name
+  *
+  * @param string $name
+  * @return Product
+  */
+  public function setName($name)
+  {
+    $this->name = $name;
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
+    return $this;
+  }
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Product
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
+  /**
+  * Get name
+  *
+  * @return string
+  */
+  public function getName()
+  {
+    return $this->name;
+  }
 
-        return $this;
-    }
+  /**
+  * Set description
+  *
+  * @param string $description
+  * @return Product
+  */
+  public function setDescription($description)
+  {
+    $this->description = $description;
 
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
+    return $this;
+  }
 
-    /**
-     * Set price
-     *
-     * @param string $price
-     * @return Product
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
+  /**
+  * Get description
+  *
+  * @return string
+  */
+  public function getDescription()
+  {
+    return $this->description;
+  }
 
-        return $this;
-    }
+  /**
+  * Set price
+  *
+  * @param string $price
+  * @return Product
+  */
+  public function setPrice($price)
+  {
+    $this->price = $price;
 
-    /**
-     * Get price
-     *
-     * @return string 
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
+    return $this;
+  }
+
+  /**
+  * Get price
+  *
+  * @return string
+  */
+  public function getPrice()
+  {
+    return $this->price;
+  }
+
+  public function addImage(Image $image)
+  {
+    $this->images[] = $image;
+
+    return $this;
+  }
+
+  public function removeImage(Image $image)
+  {
+    $this->images->removeElement($image);
+  }
+
+  public function getImages()
+  {
+    return $this->images;
+  }
 }
